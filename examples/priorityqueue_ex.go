@@ -7,17 +7,17 @@ import (
 
 func priorityqueue_test() {
     // Some items and their priorities.
-    items := map[string]int{
-        "banana": 3, "apple": 2, "pear": 4,
+    items := []string{
+        "banana", "apple", "pear",
     }
 
     // create and init with existing items
     pq := PQ.New()
 
-    for value, priority := range items {
+    for i, value := range items {
         item := &PQ.Item{
             Value:    value,
-            Priority: priority,
+            Priority: i,
         }
         pq.Push( item )
     }
@@ -37,6 +37,7 @@ func priorityqueue_test() {
         item := pq.Pop()
         fmt.Printf("%.2d:%s ", item.Priority, item.Value)
     }
+    fmt.Println()
 }
 
 
