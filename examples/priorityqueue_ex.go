@@ -23,7 +23,6 @@ func priorityqueue_test() {
     pq.Update(item.(*PQ.InternalItem), "orange2"  , 0)
 
     // Take the items out; they arrive in decreasing priority order.
-    // fmt.Printf("%+v", pq)
     for !pq.IsEmpty() {
         fruit := pq.Pop()
         fmt.Printf("%+v ", fruit )
