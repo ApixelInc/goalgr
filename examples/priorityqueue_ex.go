@@ -6,38 +6,29 @@ import (
 )
 
 func priorityqueue_test() {
-    // Some items and their priorities.
-    items := []string{
-        "banana", "apple", "pear",
-    }
-
     // create and init with existing items
     pq := PQ.New()
 
+    items := []string{
+        "banana", "apple", "pear",
+    }
     for i, value := range items {
-        item := &PQ.Item{
-            Value:    value,
-            Priority: i,
-        }
-        pq.Push( item )
+        priority := i
+        pq.Push( value, priority )
     }
 
-    item := &PQ.Item{
-        Value:    "orange",
-        Priority: 1,
-    }
-    pq.Push(item)
+    item := pq.Push( "orange", 1 )
 
     // but we want change the priority...
-    pq.Update(item, item.Value, 5)
+    pq.Update(item.(*PQ.InternalItem), "orange2"  , 0)
 
     // Take the items out; they arrive in decreasing priority order.
     // fmt.Printf("%+v", pq)
     for !pq.IsEmpty() {
-        item := pq.Pop()
-        fmt.Printf("%.2d:%s ", item.Priority, item.Value)
+        fruit := pq.Pop()
+        fmt.Printf("%+v ", fruit )
     }
-    fmt.Println()
+    fmt.Println( "\n\tshould be : banana orange2 apple pear "  )
 }
 
 
